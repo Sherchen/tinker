@@ -56,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
         loadPatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed_7zip.apk");
+                //有外置sdcard的时候获取的是/storage/sdcard1
+                String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                Log.e(TAG, "absolutePath:" + absolutePath);
+                String s = absolutePath + "/patch_signed_7zip.apk";
+                Log.e(TAG, "fullPath:" + s);
+                TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), s);
             }
         });
 
